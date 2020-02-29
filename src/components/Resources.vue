@@ -28,7 +28,6 @@
                         <b-button type="reset" variant="danger">Reset</b-button>
                     </b-form>
                 </b-modal>
-
             </b-row>
             <b-row align-v="center">
                 <Resource resourceItem="res"
@@ -67,20 +66,15 @@
         },
         methods: {
             async fetchData() {
-                // this.resources = [
-                //     {id: 1, name: 'Book1', description: 'Lorem ipsume djrig '},
-                //     {id: 2, name: 'Book2', description: 'xxwrefer fwewerg erg ergxx'},
-                //     {id: 5, name: 'Book5', description: 'xxxx fw efwe wef we we '}
-                // ];
+
                 axios
-                    .get('http://localhost:8081/categories/1')
-                    .then(response => (this.resources = response.data.resources))
+                    .get('http://localhost:8081/categories/1/resources')
+                    .then(response => (this.resources = response.data))
             },
             onSubmit(evt) {
                 evt.preventDefault()
-                //this.resources.push({id: 4444, name: this.form.name, description: this.form.description})
                 axios
-                .put('http://localhost:8081/resources', {name: this.form.name, category: {id: 1, name:'books'}})
+                .put('http://localhost:8081/categories/1/resources', {name: this.form.name, categoryId: 1})
                 .then(this.fetchData)
             },
             onReset(evt) {

@@ -5,7 +5,7 @@ import './plugins/bootstrap-vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Resources from "./components/Resources";
-import Resource from "./components/Resource";
+import ResourceDetails from "./components/ResourceDetails";
 
 Vue.config.productionTip = false
 
@@ -18,7 +18,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', name: 'home', component: App },
     { path: '/resources', name: 'resources', component: Resources },
-    { path: '/resources/:id', name: 'resource', component: Resource }
+    { path: '/resources/:id', name: 'resource', component: ResourceDetails }
   ]
 })
 

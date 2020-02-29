@@ -5,9 +5,11 @@
                 <b-card-text>
                     {{description}}
                 </b-card-text>
-                <b-button variant="primary" @click="test">More info</b-button>
+                <router-link to="/resources/36"><b-button variant="primary">More info</b-button></router-link>
             </b-card>
         </b-col>
+
+
     </div>
 </template>
 
