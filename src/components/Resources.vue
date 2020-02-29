@@ -36,7 +36,7 @@
                           :key="res.id"
                           :id="res.id"
                           :name="res.name"
-                          :description="res.description"
+                          :description="res.name"
                 />
             </b-row>
         </b-container>
@@ -45,6 +45,7 @@
 
 <script>
     import Resource from "./Resource";
+    import axios from 'axios';
 
     export default {
         name: 'Resources',
@@ -66,15 +67,21 @@
         },
         methods: {
             async fetchData() {
-                this.resources = [
-                    {id: 1, name: 'Book1', description: 'Lorem ipsume djrig '},
-                    {id: 2, name: 'Book2', description: 'xxwrefer fwewerg erg ergxx'},
-                    {id: 5, name: 'Book5', description: 'xxxx fw efwe wef we we '}
-                ];
+                // this.resources = [
+                //     {id: 1, name: 'Book1', description: 'Lorem ipsume djrig '},
+                //     {id: 2, name: 'Book2', description: 'xxwrefer fwewerg erg ergxx'},
+                //     {id: 5, name: 'Book5', description: 'xxxx fw efwe wef we we '}
+                // ];
+                axios
+                    .get('http://localhost:8081/categories/1')
+                    .then(response => (this.resources = response.data.resources))
             },
             onSubmit(evt) {
                 evt.preventDefault()
-                this.resources.push({id:4444, name: this.form.name, description: this.form.description})
+                //this.resources.push({id: 4444, name: this.form.name, description: this.form.description})
+                axios
+                .put('http://localhost:8081/resources', {name: this.form.name, category: {id: 1, name:'books'}})
+                .then(this.fetchData)
             },
             onReset(evt) {
                 evt.preventDefault()
